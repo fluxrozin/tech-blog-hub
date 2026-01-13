@@ -1,0 +1,26 @@
+{
+  "name": "tech-blog-hub",
+  "version": "1.0.0",
+  "description": "Tech Blog Management Hub",
+  "bin": {
+    "zenn-new": "./scripts/zenn-new.js",
+    "zenn-preview": "./scripts/zenn-preview.js",
+    "zenn-list": "./scripts/zenn-list.js",
+    "qiita-init": "./scripts/qiita-init.js",
+    "qiita-login": "./scripts/qiita-login.js",
+    "qiita-new": "./scripts/qiita-new.js",
+    "qiita-preview": "./scripts/qiita-preview.js",
+    "qiita-publish": "./scripts/qiita-publish.js",
+    "qiita-publish-all": "./scripts/qiita-publish-all.js",
+    "qiita-pull": "./scripts/qiita-pull.js",
+    "qiita-version": "./scripts/qiita-version.js",
+    "qiita-help": "./scripts/qiita-help.js",
+    "hatena-pull": "./scripts/hatena-pull.js",
+    "hatena-push": "./scripts/hatena-push.js",
+    "hatena-post": "./hatena/post.js",
+    "hatena-fetch": "./scripts/hatena-fetch.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

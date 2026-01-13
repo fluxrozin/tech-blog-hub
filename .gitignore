@@ -1,0 +1,13 @@
+# Executable files
+*.exe
+hatena/blogsync.exe
+
+# Configuration files with credentials
+hatena/blogsync.yaml
+
+# Node modules
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
