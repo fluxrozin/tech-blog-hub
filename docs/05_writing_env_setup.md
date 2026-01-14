@@ -86,10 +86,25 @@ npx zenn init
 
 ### 1-3. グローバルコマンドの設定
 
-プロジェクトルートで `npm link` を実行すると、どこからでも以下のコマンドが使えるようになります。
+コマンドの実行方法には 2 つあります：
+
+#### 方法 1: npm scripts を使う（推奨）- Zenn CLI
+
+`package.json` に定義された npm scripts を使用する方法です。`npm link` を実行する必要がありません。
 
 ```console
-# プロジェクトルートで実行
+# プロジェクトルートから実行
+npm run zenn-new --slug my-first-article
+npm run zenn-preview
+npm run zenn-list
+```
+
+#### 方法 2: npm link を使う - Zenn CLI
+
+グローバルコマンドとして直接実行できるようにする方法です。
+
+```console
+# プロジェクトルートで実行（一度だけ実行すればOK）
 npm link
 ```
 
@@ -98,6 +113,8 @@ npm link
 - `zenn-new` - 新しい記事を作成
 - `zenn-preview` - プレビューを起動
 - `zenn-list` - 記事の一覧を表示
+
+**注意：** `npm link` は一度実行すれば永続的に有効です。ターミナルを開き直しても、再度実行する必要はありません。ただし、`package.json` の `bin` フィールドを変更した場合は、再度 `npm link` を実行してください。
 
 ### 1-4. 動作確認（記事作成/プレビュー）
 
@@ -178,10 +195,29 @@ npx qiita init
 
 ### 2-3. グローバルコマンドの設定
 
-プロジェクトルートで `npm link` を実行すると、どこからでも以下のコマンドが使えるようになります（Step 1-3 で既に実行済みの場合は不要）。
+コマンドの実行方法には 2 つあります：
+
+#### 方法 1: npm scripts を使う（推奨）- Qiita CLI
+
+`package.json` に定義された npm scripts を使用する方法です。`npm link` を実行する必要がありません。
 
 ```console
-# プロジェクトルートで実行
+# プロジェクトルートから実行
+npm run qiita-init
+npm run qiita-login
+npm run qiita-new newArticle001
+npm run qiita-preview
+npm run qiita-publish newArticle001
+npm run qiita-publish-all
+npm run qiita-pull
+```
+
+#### 方法 2: npm link を使う - Qiita CLI
+
+グローバルコマンドとして直接実行できるようにする方法です（Step 1-3 で既に実行済みの場合は不要）。
+
+```console
+# プロジェクトルートで実行（一度だけ実行すればOK）
 npm link
 ```
 
@@ -194,6 +230,8 @@ npm link
 - `qiita-publish <記事名>` - 記事を公開
 - `qiita-publish-all` - すべての記事を公開
 - `qiita-pull` - リモート更新を同期
+
+**注意：** `npm link` は一度実行すれば永続的に有効です。ターミナルを開き直しても、再度実行する必要はありません。ただし、`package.json` の `bin` フィールドを変更した場合は、再度 `npm link` を実行してください。
 
 ### 2-4. トークン発行（必須）
 
@@ -279,10 +317,26 @@ id: null
 
 ### 3-2. グローバルコマンドの設定
 
-プロジェクトルートで `npm link` を実行すると、どこからでも以下のコマンドが使えるようになります（Step 1-3 で既に実行済みの場合は不要）。
+コマンドの実行方法には 2 つあります：
+
+#### 方法 1: npm scripts を使う（推奨）- はてなブログ
+
+`package.json` に定義された npm scripts を使用する方法です。`npm link` を実行する必要がありません。
 
 ```console
-# プロジェクトルートで実行
+# プロジェクトルートから実行
+npm run hatena-pull
+npm run hatena-push hatena/fluxrozin.hateblo.jp/entry/20260113/article.md
+cat draft.md | npm run hatena-post -- --title "記事タイトル" --draft
+npm run hatena-fetch hatena/fluxrozin.hateblo.jp/entry/20260113/article.md
+```
+
+#### 方法 2: npm link を使う - はてなブログ
+
+グローバルコマンドとして直接実行できるようにする方法です（Step 1-3 で既に実行済みの場合は不要）。
+
+```console
+# プロジェクトルートで実行（一度だけ実行すればOK）
 npm link
 ```
 
@@ -292,6 +346,8 @@ npm link
 - `hatena-push <file-path>` - はてなブログに記事をアップロード
 - `hatena-post` - 記事を新規投稿（標準入力から）
 - `hatena-fetch <file-path>` - リモート更新を取り込み
+
+**注意：** `npm link` は一度実行すれば永続的に有効です。ターミナルを開き直しても、再度実行する必要はありません。ただし、`package.json` の `bin` フィールドを変更した場合は、再度 `npm link` を実行してください。
 
 ### 3-3. 設定（秘密情報をコミットしない）
 
