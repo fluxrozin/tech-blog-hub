@@ -5,6 +5,44 @@
 
 const { spawn } = require('child_process');
 const path = require('path');
+const fs = require('fs');
+
+/**
+ * Get the project root directory (parent of scripts/)
+ * @returns {string} Project root path
+ */
+function getProjectRoot() {
+  return path.join(__dirname, '..');
+}
+
+/**
+ * Ensure the command is run from within the project root
+ * Exits with error if run from outside the project
+ */
+function ensureProjectRoot() {
+  const projectRoot = getProjectRoot();
+  const currentDir = process.cwd();
+  const packageJsonPath = path.join(projectRoot, 'package.json');
+  
+  // Check if package.json exists in project root
+  if (!fs.existsSync(packageJsonPath)) {
+    console.error('Error: package.json not found in project root.');
+    process.exit(1);
+  }
+  
+  // Check if current directory is within project root
+  const relativePath = path.relative(projectRoot, currentDir);
+  // If relativePath starts with '..', currentDir is outside projectRoot
+  // If relativePath is empty, currentDir is the projectRoot itself (OK)
+  // Otherwise, currentDir is inside projectRoot (OK)
+  if (relativePath.startsWith('..')) {
+    console.error('Error: This command must be run from within the project root directory.');
+    console.error(`Project root: ${projectRoot}`);
+    console.error(`Current directory: ${currentDir}`);
+    console.error('\nPlease change to the project root directory and try again.');
+    process.exit(1);
+  }
+}
 
 /**
  * Run a command with specified options
@@ -80,5 +118,7 @@ function runBlogsync(subCommand, extraArgs = [], defaultBlogId = null) {
 module.exports = {
   runCommand,
   runNpx,
-  runBlogsync
+  runBlogsync,
+  ensureProjectRoot,
+  getProjectRoot
 };

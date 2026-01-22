@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-const { runNpx } = require('./utils');
+const { runNpx, ensureProjectRoot } = require('./utils');
+
+ensureProjectRoot();
 
 // Parse command line arguments
 // Default to list:articles if no argument provided

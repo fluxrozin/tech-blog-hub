@@ -6,6 +6,27 @@
 
 const { spawn } = require('child_process');
 const path = require('path');
+const fs = require('fs');
+
+// Ensure the command is run from within the project root
+const projectRoot = path.join(__dirname, '..');
+const packageJsonPath = path.join(projectRoot, 'package.json');
+const currentDir = process.cwd();
+
+if (!fs.existsSync(packageJsonPath)) {
+  console.error('Error: package.json not found in project root.');
+  process.exit(1);
+}
+
+const relativePath = path.relative(projectRoot, currentDir);
+// If relativePath starts with '..', currentDir is outside projectRoot
+if (relativePath.startsWith('..')) {
+  console.error('Error: This command must be run from within the project root directory.');
+  console.error(`Project root: ${projectRoot}`);
+  console.error(`Current directory: ${currentDir}`);
+  console.error('\nPlease change to the project root directory and try again.');
+  process.exit(1);
+}
 
 // Default blog ID
 let blogId = process.env.HATENA_BLOG_ID || 'fluxrozin.hateblo.jp';
